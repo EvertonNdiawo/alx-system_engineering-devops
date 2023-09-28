@@ -10,4 +10,6 @@ In this specific directory,my knowledge of shell permissions is put to the test 
 
 4-empty -> Script that creates an empty file called hello
 
-5-execute -> Script to add execute permission to the owner of the a file hello. 
+5-execute -> Script to add execute permission to the owner of the a file hello
+
+6-multiple_permissions -> Script to add execute permission to the owner and the group owner and read permission to other users to the file hello.. 
