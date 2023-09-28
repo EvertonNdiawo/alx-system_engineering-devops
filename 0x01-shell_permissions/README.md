@@ -20,4 +20,6 @@ In this specific directory,my knowledge of shell permissions is put to the test 
 
 9-John_Doe -> Script that sets mode of file hello to -rwx-x-wx 
 
-10-.
+10-mirror_permissions -> Script file to set mode of a file hello the same as a file Olleh's mode.
+
+11-.
