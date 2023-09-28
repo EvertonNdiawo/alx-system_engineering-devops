@@ -16,4 +16,4 @@ In this specific directory,my knowledge of shell permissions is put to the test 
 
 7-everybody -> Script to add execution permission to the owner, the group owner and the other users, to a file hello.
 
-
+8-james_bond -> script to give owner no permission at all, group no permission at all and other users all the permissions.
