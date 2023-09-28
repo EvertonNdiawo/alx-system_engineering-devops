@@ -12,4 +12,8 @@ In this specific directory,my knowledge of shell permissions is put to the test 
 
 5-execute -> Script to add execute permission to the owner of the a file hello
 
-6-multiple_permissions -> Script to add execute permission to the owner and the group owner and read permission to other users to the file hello.. 
+6-multiple_permissions -> Script to add execute permission to the owner and the group owner and read permission to other users to the file hello.
+
+7-everybody -> Script to add execution permission to the owner, the group owner and the other users, to a file hello.
+
+
