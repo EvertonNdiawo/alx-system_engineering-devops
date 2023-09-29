@@ -28,4 +28,6 @@ In this specific directory,my knowledge of shell permissions is put to the test 
 
 13-change_owner -> Script to change group owner to school for hello file.
 
+100-change_ower_and_group -> A script that changes owner to vincent and group owner to staff for all files and directories in the working directory.
+
 .
