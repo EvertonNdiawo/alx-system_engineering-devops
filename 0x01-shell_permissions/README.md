@@ -23,3 +23,5 @@ In this specific directory,my knowledge of shell permissions is put to the test 
 10-mirror_permissions -> Script file to set mode of a file hello the same as a file Olleh's mode.
 
 11-directories_permissions -> Script to add execute permission to all subdirectories of current directory for the owner, the group owner and all other users.
+
+12-directory_permissions -> A script that creates a directory called my_dir with permissions 751 in the working directory.
