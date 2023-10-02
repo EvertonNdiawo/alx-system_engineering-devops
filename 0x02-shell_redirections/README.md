@@ -20,4 +20,4 @@
 
 9-duplicate_last_line -> A script that duplicates last line of the file iacta, assumed to be in the working directory.
 
-10-
+10-no_more_js -. script that deletes all regular files and not directories with a .js extension that are present in the current directory and all its subfolders.
