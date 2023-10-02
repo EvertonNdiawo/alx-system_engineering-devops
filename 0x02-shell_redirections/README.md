@@ -2,6 +2,6 @@
 
 0-hello_world -> A script that prints "Hello world" to the screen followed by a newline character. 
 
-1-confused_smiley -> A script that displays a confused smiley "(Oo)' 
+1-confused_smiley -> A script that displays a confused smiley "(Ôo)' 
 
 2-
