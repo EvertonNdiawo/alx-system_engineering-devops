@@ -26,4 +26,6 @@
 
 12-newest_files -> A script to display the 10 newest files in the current directory, one file per line, sorted from newest to oldest.
 
+13-unique -> A Script that gets a list of words as input and prints only words that appear exaclty once.
 
+14- 
