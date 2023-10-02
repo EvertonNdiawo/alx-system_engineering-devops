@@ -8,4 +8,8 @@
 
 3-twofiles -> Scrpt to display contents of /etc/passwd and /etc/hosts
 
-4-lastlines -> A script to display the last ten files of /etc/passwd..
+4-lastlines -> A script to display the last ten lines of /etc/passwd.
+
+5-firstlines -> Script to display the first ten lines of /etc/passwd.
+
+6-
