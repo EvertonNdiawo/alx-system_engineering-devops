@@ -22,4 +22,8 @@
 
 10-no_more_js -. script that deletes all regular files and not directories with a .js extension that are present in the current directory and all its subfolders
 
-11-directories -> script that counts the mumber of directories and sub-directories in the current directory, not taking into account the current and parent diectories and also counting hidden directories..
+11-directories -> script that counts the mumber of directories and sub-directories in the current directory, not taking into account the current and parent diectories and also counting hidden directories.
+
+12-newest_files -> A script to display the 10 newest files in the current directory, one file per line, sorted from newest to oldest.
+
+
