@@ -12,6 +12,6 @@
 
 5-firstlines -> Script to display the first ten lines of /etc/passwd.
 
-6-thirdline -> Script to display the third line of the file iacta located in the working directory.
+6-third_line -> Script to display the third line of the file iacta located in the working directory.
 
 7-
