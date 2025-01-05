@@ -89,3 +89,26 @@
 inclusive of those that are currently not runnng,
 even though it is primarily used to show currently running processes: `ps -A`.
 
+
+- #### Changing priority of a process
+
+	- Prioritizing between processes is possible in linux
+	- The priority value for a process is called its `Niceness` value and can range from
+`-19` to `19`. 0 is the default value.
+	- In `top` command , the fourth column contains the niceness values.
+
+	- To start a process and give it a nice value other than the default one:
+
+		```
+			$ nice -n [value] [process name] 
+		```
+
+	- To change the value of a process that is already running:
+
+		```
+			$ renice [value] -p 'PID'
+		```
+
+
+
+### 
