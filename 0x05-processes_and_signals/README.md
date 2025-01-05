@@ -83,6 +83,8 @@
 		6. __%MEM__ - amount of memory the process is taking up.
 		7. __STAT__ - process state.
 
+
+
 	- __*Note*__ 2. The command can also be used to list all the processes, 
 inclusive of those that are currently not runnng,
 even though it is primarily used to show currently running processes: `ps -A`.
