@@ -33,7 +33,7 @@
 	- Used to track the running processes:
 
 		```
-			top
+			$top
 		```
 	- Displays a list of processes that are running in real-time along with their memory and CPU usage.
 
@@ -65,10 +65,10 @@
 
 - #### ps command
 
-	- Short for `Process Status` and displays a currently-running processes. Output generated is however not in real time like that of the `to` command.
+	- Short for `Process Status` and displays a currently-running processes. Output generated is however not in real time like that of the `top` command.
 
 		```
-			ps
+			$ps
 		```
 
 	- Terminology used is as follows:
@@ -78,12 +78,12 @@
 		4. __CMD__ - The command that launches the process.
 
 
-	- __*Note*__ 1. In order to get more information using `ps` command: `ps -u` should suffice.
-
-	- Here such extra information is inclusive of:
+	- __*Note*__ 1. In order to get more information using `ps` command: `ps -u` should suffice. Here such extra information is inclusive of:
 	-	5. __%CPU__ - amount of computing power the process is taking.
 	-	6. __%MEM__ - amount of memory the process is taking up.
 	-	7. __STAT__ - process state.
 
-	-	     2. The command can also be used to list all the processes, inclusive of those that are currently not runnng, even though it is primarily used to show currently running processes: `ps -A`.
- 
+	- __*Note*__ 2. The command can also be used to list all the processes, \ 
+inclusive of those that are currently not runnng, \ 
+even though it is primarily used to show currently running processes: `ps -A`.
+
