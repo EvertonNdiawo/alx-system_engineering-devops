@@ -111,4 +111,38 @@ even though it is primarily used to show currently running processes: `ps -A`.
 
 
 
-### 
+### More on Process IDs (PID)
+
+- Are process identification numbers and are automatically assigned to every process when they are created in a Unix-like system.
+
+- A process (`init`) is the ancestor of all other processes within the system and is always the first process. It will always have the same id, of `1`.
+
+- The default maximum value of a PID is `32, 767` and is essentially the maximum number of processes that can exist within the system at a go. Large servers may however require many more processes.
+
+- PIDs loop around after the maximum value is reached and therefore a lower PID does not necessarily mean that the process started to run earlier, it could just be an indication of a loop in the values, meaning that it could even be the most recent.
+
+- The file `pid_max` specifies the value at which PIDs wrap around( A value usually 1 greater than the maximum PID). Its default is therefore `37,678` but can be set to any number up to approximately `4,000,000`. This is due to the fact that maximum number of processes within a system is just limited by the amount of RAM available. Therefore having more RAM essentially means you could have more processes running simultaneously.
+
+- Several commands can be used to find the PID's currently on the system. A good number have been discussed up above. e.g `top`, `ps`.
+
+- More commands such as `pstree` - shows process names and PIDs in a tree diagram.
+
+- `pidof` command provides the PID of a program whose name is passed to it as an argument / input.
+
+- Information on current processes is stored in a file, `/proc filesystem` which consists of kernel data that changes in real-time. It is very possible to extract information therein using common commands like `cat` etc.
+
+- Due to the length of the /proc file, it is generally convenient to pipe its content to the `less` command to allow for the output to be read one screenful at a time.
+
+- Also, within this /Proc file, there exists a numbered directory that corresponds with each PID currently on the system and each of the directories contain several standard files containing information about the process. e.g the file `cmdline` contains info about the terminal.
+
+	```
+		$ cat /proc/1/cmdline #would display contents about the terminal process.
+	```
+
+- There also exists a PID `status` file, which is also found within its directory in /proc. Example:
+
+	```
+		$ cat /proc/1/status    # Displays the contents of the status file for PID 1.
+	```
+
+
