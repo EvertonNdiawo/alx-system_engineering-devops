@@ -28,7 +28,7 @@
 
 ### Commands for process management
 
-- #### The Top command
+- #### top command
 
 	- Used to track the running processes:
 
@@ -58,4 +58,32 @@
 		11. __TIME+:__ - Total `CPU time` consumed by the process.
 		12. __Command:__ - Command used to activate the process.
 
-	- 
+	- __*Note*__ 1. Navigation within the list is done using the __up__ and __down__ `arrow keys`.
+	-	     2. To quit the process, `q` is used.
+	- 	     3. Highlighting a process and then pressing `k` is one of the ways to kill a process.
+
+
+- #### ps command
+
+	- Short for `Process Status` and displays a currently-running processes. Output generated is however not in real time like that of the `to` command.
+
+		```
+			ps
+		```
+
+	- Terminology used is as follows:
+		1. __PID__ - Process ID.
+		2. __TTY__ - Terminal type.
+		3. __TIME__ - Total the process has been running.
+		4. __CMD__ - The command that launches the process.
+
+
+	- __*Note*__ 1. In order to get more information using `ps` command: `ps -u` should suffice.
+
+	- Here such extra information is inclusive of:
+	-	5. __%CPU__ - amount of computing power the process is taking.
+	-	6. __%MEM__ - amount of memory the process is taking up.
+	-	7. __STAT__ - process state.
+
+	-	     2. The command can also be used to list all the processes, inclusive of those that are currently not runnng, even though it is primarily used to show currently running processes: `ps -A`.
+ 
