@@ -125,6 +125,8 @@ even though it is primarily used to show currently running processes: `ps -A`.
 
 - Several commands can be used to find the PID's currently on the system. A good number have been discussed up above. e.g `top`, `ps`.
 
+- `$$` is a special variable that holds the `PID` of the `current shell`.
+
 - More commands such as `pstree` - shows process names and PIDs in a tree diagram.
 
 - `pidof` command provides the PID of a program whose name is passed to it as an argument / input.
