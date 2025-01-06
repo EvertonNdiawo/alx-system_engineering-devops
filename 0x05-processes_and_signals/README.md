@@ -148,3 +148,28 @@ even though it is primarily used to show currently running processes: `ps -A`.
 	```
 
 
+### Signals
+
+- Is an event generated in response to some condition, an interrupt of some sort.
+- Upon receipt of a signal, a process takes some action.
+
+
+	- #### Types of signals
+
+		1. Maskable => Can be changed or ignored by the user.(Ctrl+C)
+
+		2. Non-Maskable => Cannot be changed or ignored by the user.
+
+
+	- #### Common signals:
+
+		| Signal   | Description                                                                 |
+		|----------|-----------------------------------------------------------------------------|
+		| SIGHUP   | Hang-up detected on controlling terminal or death of controlling process.   |
+		| SIGINT   | Issued if the user sends an interrupt signal (Ctrl + C).                    |
+		| SIGQUIT  | Issued if the user sends a quit signal (Ctrl + D).                          |
+		| SIGFPE   | Issued if an illegal mathematical operation is attempted.                   |
+		| SIGKILL  | Process quits immediately and will not perform any clean-up operations.     |
+		| SIGTERM  | Software termination signal (sent kill by default).                         |
+		| SIGALRM  | Alarm clock signal (used for timers).                                       |
+
