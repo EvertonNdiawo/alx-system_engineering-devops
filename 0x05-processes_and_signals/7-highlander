@@ -2,6 +2,7 @@
 # Displays some text indefinitely, with a sleep 2 in between, echoes text when SIGTERM encountered.
 
 trap 'echo "I am invincible!!!";' SIGTERM
+trap 'echo "Killed"; exit 0' SIGINT
 
 while true; do
 	echo "To infinity and beyond"
