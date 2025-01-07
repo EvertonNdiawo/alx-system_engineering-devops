@@ -285,3 +285,24 @@ with the most commonly used ones being `start`, `stop` or `restart`.
 - Some of the most common init scripts in this directory include: - networking - samba -apache2 -ftpd -sshd dovecot -mysql and many more.
 	```
 
+
+
+## Zombie process
+
+- When a child process ( and every process is a child process of some parent, with the default being the init process), the process sends an exit status to its parent. The process however remains in the OS table as a `zombie process` indicating it is not scheduled for any further execution. It is not completely removed and its PID is not immediately reassigned until it is determined that its exit status is nolonger needed.
+
+- The exit of a child process prompts the parent process receives a `SIGCHLD` signal to indicate that one of its children has finished executing and this prompts the parent process to call the `wait()` `system call` to examine the exit status of the child and then causes the child to be reaped/removed form the process table.
+
+- To verify existence of zombie process on a system:
+
+	```
+		$ ps aux
+	```
+
+	- procede to look for any processes with a `Z` in the `STAT` column.
+
+- Sending a `SIGCHLD` to the parent (`"kill -s SIGCHLD <pPID>"`) causes well responding parents to reap their zombie children.
+
+- Also, killing the parent process of the zombie, may also kill the zombie children, by forcing the init process to adopt the killed parent's zombie children and reaps them.
+
+## End of Content.
