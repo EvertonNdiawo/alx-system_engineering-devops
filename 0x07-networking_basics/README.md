@@ -6,13 +6,13 @@
 
 	- #### Types of Area Networks:
 
-		1. __LAN:__ - Local Area Network.
-		2. __WAN:__ - Wide Area Network.
-		3. __WLAN:__ - Wireless Local Area Network.
-		4. __MAN:__ - Metropolitan Area Network.
-		5. __SAN:__ - Storage/System/Server/Small  Area Network.
-		6. __CAN:__ - Campus/Controller/Cluster Area Network.
-		7. __PAN:__ - Personal Area Network.
+		- __LAN:__ - Local Area Network.
+		- __WAN:__ - Wide Area Network.
+		- __WLAN:__ - Wireless Local Area Network.
+		- __MAN:__ - Metropolitan Area Network.
+		- __SAN:__ - Storage/System/Server/Small  Area Network.
+		- __CAN:__ - Campus/Controller/Cluster Area Network.
+		- __PAN:__ - Personal Area Network.
 
 		Of all these, `LAN` and `WAN` are the two primary and best-known categories of networks, based on the scale/scope of the network. The other categories have merged with technological advances.
 
