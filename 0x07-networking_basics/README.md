@@ -42,19 +42,19 @@
 
 	- #### Other network variants:
 
-		1.  Wireless Local Area Network(___WLAN___): A LAN that is just based on `Wi-Fi` wireless network technology.
+		-  Wireless Local Area Network(___WLAN___): A LAN that is just based on `Wi-Fi` wireless network technology.
 
-		2. Metropolitan Area Network: A network spanning an area larger than that of a LAN but smaller than that of a WAN, such as a network within a city. Typically owned and managed by a single entity such as a government body or large corporation.
+		- Metropolitan Area Network: A network spanning an area larger than that of a LAN but smaller than that of a WAN, such as a network within a city. Typically owned and managed by a single entity such as a government body or large corporation.
 
-		3. Campus Area Network: A network spanning multiple LANs but smaller than a MAN, such as a university or local business campus.
+		- Campus Area Network: A network spanning multiple LANs but smaller than a MAN, such as a university or local business campus.
 
-		4. Personal Area Network: A network that surrounds an individual. A wireless PAN (___WPAN___) might be created between bluetooth devices.
+		- Personal Area Network: A network that surrounds an individual. A wireless PAN (___WPAN___) might be created between bluetooth devices.
 
-		5. Storage Area Network: Connects servers to data storage devices through technology like `Fibre Channel`.
+		- Storage Area Network: Connects servers to data storage devices through technology like `Fibre Channel`.
 
-		6. System Area Network, also Cluster Area Network(___CAN___): Links high-performance computers with high-speed connections in a cluster configuration.
+		- System Area Network, also Cluster Area Network(___CAN___): Links high-performance computers with high-speed connections in a cluster configuration.
 
-		7. Passive Optical Local Area Network(___POLAN___): Serves fiber by using fiber optic splitters to allow a single `optical fiber` to serve multiple devices.
+		- Passive Optical Local Area Network(___POLAN___): Serves fiber by using fiber optic splitters to allow a single `optical fiber` to serve multiple devices.
 
 
 
