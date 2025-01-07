@@ -173,3 +173,115 @@ even though it is primarily used to show currently running processes: `ps -A`.
 		| SIGTERM  | Software termination signal (sent kill by default).                         |
 		| SIGALRM  | Alarm clock signal (used for timers).                                       |
 
+
+
+
+## Ampersands(&) on the command line
+
+- `&` In bash, on the linux terminal is a `control operator` and can manifest as either a single ampersand or double ampersand. (& and &&).
+
+	- ### Single ampersand (&)
+
+	- Example:
+		```
+			./myscript.py &
+		```
+
+	- Directs the shell to run the command in the `background`, it is forked and run in a seperate sub-shell, as a job, asynchronously. The shell then returns a return status of 0 adn then continue as normal.
+
+	- The shell also prints out the forked process's job number and PID like so:
+
+		```
+			./myscript.py &
+			[1] 1333
+		```
+
+	- After a process is forked using a single trailing ampersand, its PID is stored ina special variable, `&!` which can be used to later refer to the process. The process can now also be seen in the `jobs` list:
+	
+		```
+			$ echo &!
+			1333
+
+			$ jobs
+			[1]+ Running		./myscript.py &
+		```
+
+
+	- The `foreground`(___fg___) command can bring back this process to the command line before it finishes.
+
+	- This single ampersand can also delimit a list of various commands to run asynchronously:
+
+		```
+			$ ./script.py & ./script2.py & ./script3.py &
+		```
+
+	- In this, all 3 python scripts are run at the same time, in seperately forked sub-shells. Their output is however still tied to the parent shell that has been forked and therefore since it is run from a linux terminal, the outputs will be on the same terminal.
+
+
+	- __Note:__ - To detach a process completely from the shell, piping the `stdout` and `stderr` to a file or to `/dev/null` would be a really nice way to do this, especially with the `nohup` command.
+
+
+
+	- ### Double ampersand (&&)
+
+	- In bash, a double ampersand means `AND` and can be used to seperate a list of commands to be run sequentially(one after the other).
+
+	- Commands seperated by a && are to be run `synchronously` with each one running only if the last one did not fail( with an intepretation of fail as returning a non-zero return status).
+
+
+	- Example:
+		```
+			$ cd /root/ && echo "I've got root"
+		```
+
+	- Here, the `cd` command runs first and attempt to change directory to root. If successfull, the `echo` command then executes. If the cd command fails, directory is not changed to root and therefore the echo command is not executed.
+
+
+	- Example2:
+
+		```
+			$ cd /tmp/files/ \                             //Go to this directory
+			&& tar zcvf files.tgz * \                     //Tar up the files
+			&& rsync -avz files.tgz example.com:/tmp/    //rsync the tarballto a server 
+		```
+
+
+	- To escape ampersands and limit their special functionality, just escape with a backslash:
+
+		```
+			$ echo Tom \& Jerry
+		```
+
+
+
+
+## The /etc/init.d Directory
+
+- This directory contains a number of `start/stop scripts` for various services on the system. Everything is controlled from this directory.
+
+- It is especially useful when there is need to start or stop a process cleanly and without using the kill or killall commands.
+
+- First things first, inorder to control any of the scripts in the init.d manually, root `sudo` access is required. Each script is run as a command in this format:
+
+	```
+		$ /etc/init.d/[COMMAND] [OPTION]
+	```
+where [COMMAND] is the actual command to run and [OPTION] can be one of the following:
+
+	1. start
+	2. stop
+	3. reload
+	4. restart
+	5. force-reload
+
+with the most commonly used ones being `start`, `stop` or `restart`.
+
+- An example when stopping your network or restart it:
+
+	```
+		$ /etc/init.d/networking stop
+		$ /etc/init.d/networking restart
+
+- Some of the most common init scripts in this directory include: - networking - samba -apache2 -ftpd -sshd dovecot -mysql and many more.
+	```
+
