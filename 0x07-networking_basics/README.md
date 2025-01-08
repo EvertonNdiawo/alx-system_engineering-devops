@@ -105,18 +105,18 @@
 
 			- `127.0.0.1` - Loopback address (refers to your machine).
 
-		the first two are considered reserved IP addresses and are not considered usable.
+			the first two are considered reserved IP addresses and are not considered usable.
 
 
 
-		- #### IP address classes
+	- #### IP address classes
 
-			- | Class    | Start address      | Finish address          |
-			  |----------|--------------------|-------------------------|
-			  |     A    |   0.0.0.0          |   126.255.255.255       |
-			  | Loopback |   127.0.0.0        |   127.255.255.255       |
-			  |     B    |   128.0.0.0        |   191.255.255.255       |
-			  |     C    |   192.0.0.0        |   223.255.255.255       |
-			  |     D    |   224.0.0.0        |   239.255.255.255       |
-			  |     E    |   240.0.0.0        |   255.255.255.255       |
+		 | Class    | Start address      | Finish address          |
+		 |----------|--------------------|-------------------------|
+		 |     A    |   0.0.0.0          |   126.255.255.255       |
+		 | Loopback |   127.0.0.0        |   127.255.255.255       |
+		 |     B    |   128.0.0.0        |   191.255.255.255       |
+		 |     C    |   192.0.0.0        |   223.255.255.255       |
+		 |     D    |   224.0.0.0        |   239.255.255.255       |
+		 |     E    |   240.0.0.0        |   255.255.255.255       |
 			  
