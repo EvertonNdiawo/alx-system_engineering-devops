@@ -80,4 +80,43 @@
 - In order to find the MAC address on a linux terminal, the command `ifconfig-a` should suffice as it displays information regarding all interfaces on the network, which is inclusive of the MAC address.
 
 
+### IP Address
 
+- A unique identifier assigned to every machine on the internet through `DHCP`, Dynamic Host Configuration Protocol, more like a telephone number for machines over the internet.
+
+- Ip addresses exist in two formats, __IP address version 4__ (`IPv4`) and __version 6__(`IPv6`), With the version 6 set to replace the version 4 in future.
+
+- Ipv6 is a 128-byte IP and provides more IP addressing for the ever increasing number of devices on the internet, smart devices etc etc.
+
+- Ipv4 can only offer a maximum of 4,000,000,000 addresses and thereby the need for a different addressing system.
+
+
+	- #### IPv4 Addresses
+
+		- Consists of 4 numbers, seperated by periods, with numbers having a possible range of 0 to 255. e.g `192.168.20.3`
+
+		- With every number having a range of 250, there is a possible total of 4, 294,967, 296 IP addresses.
+
+		- Out of these, 3 are special addresses and include:
+
+			- `0.0.0.0` - Default network
+
+			- `255.255.255.255 - Broadcast address
+
+			- `127.0.0.1` - Loopback address (refers to your machine).
+
+		the first two are considered reserved IP addresses and are not considered usable.
+
+
+
+		- #### IP address classes
+
+			- | Class    | Start address      | Finish address          |
+			  |---------------------------------------------------------|
+			  |     A    |   0.0.0.0          |   126.255.255.255       |
+			  | Loopback |   127.0.0.0        |   127.255.255.255       |
+			  |     B    |   128.0.0.0        |   191.255.255.255       |
+			  |     C    |   192.0.0.0        |   223.255.255.255       |
+			  |     D    |   224.0.0.0        |   239.255.255.255       |
+			  |     E    |   240.0.0.0        |   255.255.255.255       |
+			  
