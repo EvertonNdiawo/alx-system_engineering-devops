@@ -209,3 +209,116 @@
 
 
 
+
+## Bash Positional parameters
+
+- Bash scripts use postitional parameters:
+	- to process command line arguments in a bash shell script.
+	- to get process status, exit status and options flag.
+	- as an argument to process the inputs.
+
+- These positional parameters can be referenced but cannot be assigned.
+
+
+	- ### $0, $1 $2 $3 ...bash parameters
+
+		- These are special parameters and have a specific meaning according to the number.
+		- Are very useful if validation of the executing file name is necessary followed by processing based on arguments.
+
+
+		1. __$0: bash Shell argument 0__ - Expands into bash script file name or bash shell.
+
+		2.__$1 $2 $3 ... :bash shell argument [number]__ - Used to get the specific argument from the script. Example:
+
+		```
+			$ test.sh aa bb cc dd
+			#!/bin/sh
+			echo "Filename is " $0
+			echo "First arg. is" $1
+			echo "Second arg. is" $2
+			echo "Third arg. is" $3
+			echo "Fourth arg. is" $4
+
+
+			After execution, this is the output:
+			
+			$./test.sh aa bb cc dd
+			Filename is ./test.sh
+			First arg. is aa
+			Second arg. is bb
+			...
+		```
+
+	- ### $\*  bash parameter 
+
+		- Lists all the command line arguments in a single string format.
+
+		```
+			test.sh
+			#!/bin/sh
+			echo "All (*) args are" $*
+
+			On execution:
+
+			./test.sh aa bb cc dd
+			All (*) args are aa bb cc dd
+		```
+	- ### $@ bash parameter 
+
+		- Lists all command line arguments in array format:
+
+		```
+			test.sh
+			#!/bin/sh
+			echo "Array of args are" $@
+		
+			Execution:
+
+			./test.sh aa bb cc dd
+			Array of args are aa bb cc dd
+		```
+
+	- ### $# bash parameter
+	
+		- Returns a numeric count of the commmand line arguments.Especially useful wehen validation of the exact number of arguments is necessary.
+
+		```
+			echo "Number of args.(#) are " $#
+
+			Execution:
+
+			Number of args.(#) are 4
+		```
+
+	- ### $? bash parameter 
+
+		- Returns the exit status of the last executed process. 0 for success and non-zero for errors.
+
+		```
+
+			ls
+			echo "Exit status is: " $?
+
+			Execution:
+
+			Exit status is: 0 
+		```
+
+	- ### $! bash parameter 
+
+		- Gives the process ID of the last job placed into the background
+
+
+	- ### $$ 
+
+		- Expands to the process ID of the shell or invoking shell in case of subshell
+
+	- ### $\_ bash parameter
+
+		- Gives shell script names or command line arguments for the last command executed.
+
+
+	- ### $- bash parameter
+
+		- Lists special parameters set for bash.
+
