@@ -228,7 +228,7 @@
 
 		1. __$0: bash Shell argument 0__ - Expands into bash script file name or bash shell.
 
-		2.__$1 $2 $3 ... :bash shell argument [number]__ - Used to get the specific argument from the script. Example:
+		2. __$1 $2 $3 ... :bash shell argument [number]__ - Used to get the specific argument from the script. Example:
 
 		```
 			$ test.sh aa bb cc dd
