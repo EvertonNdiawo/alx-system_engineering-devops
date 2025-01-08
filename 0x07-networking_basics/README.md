@@ -63,4 +63,10 @@
 
 ### MAC Address
 
-- 
+- `Media Access Control` (___MAC___) address is a string of characters that identifies a device on a network.
+
+- It is tied to a computers ___Network interface card___(__NIC__), a circuit card that makes it possible for the computer to connect to a network. It is responsible for transforming data into electric signals that can be transported over the network and eventually the internet.
+
+- Every `NIC` has a `hardware` address, the `MAC` address.
+
+- Just a side note, `IP` addresses are associated with `TCP/IP`, softaware, a networking software wheres `MAC` addresses are physically mapped onto the computer's network card.
