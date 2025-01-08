@@ -70,3 +70,14 @@
 - Every `NIC` has a `hardware` address, the `MAC` address.
 
 - Just a side note, `IP` addresses are associated with `TCP/IP`, softaware, a networking software wheres `MAC` addresses are physically mapped onto the computer's network card.
+
+- The ___Address Resolution Protocol___(`ARP`) translates an IP address into a MAC address.
+
+- MAC addresses are more reliable in diagnostics since they do not change as opposed to the IP address that can change from time to time.
+
+- Also, with regards to security, a router can be configured to accept traffic only from a specific MAC address, `MAC address filtering`. This way, computers whose MAC addresses are approved are able to communicate whereas the rest are restricted from communicating.
+
+- In order to find the MAC address on a linux terminal, the command `ifconfig-a` should suffice as it displays information regarding all interfaces on the network, which is inclusive of the MAC address.
+
+
+
