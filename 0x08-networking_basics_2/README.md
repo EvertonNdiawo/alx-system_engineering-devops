@@ -80,7 +80,8 @@
 
 
 
-###  Netcat (nc) Command
+###  The Netcat (nc) Command
+
 
 	- Netcat is a networking utility for debugging and investigating the network.
 
