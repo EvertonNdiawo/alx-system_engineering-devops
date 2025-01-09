@@ -57,7 +57,7 @@
 
 
 
-- ### Modifying the hosts file on Linux
+- ### The hosts file on Linux
 
 	- A hosts file is a plain text file that all operating systems use to translate hostnames(__URLs__) into IP addresses. e.g when a user types a hostname such as wikipedia.org, the user's system looks into the hosts file to get the IP address needed to connect to the appropriate server.
 
@@ -79,5 +79,61 @@
 	- This hosts file could also be used to creat a shortcut to frequented sites by the user. By using a tool such as `nslookup` to find IP addresses for such sites and listing them in the hosts file, with a shortcut name to use when browsing.
 
 
+
+###  Netcat (nc) Command
+
+	- Netcat is a networking utility for debugging and investigating the network.
+
+	- Can be used for creating TCP/UDP connections, sockets and investigating them.
+
+
+	- #### 1. Netcat in a client-server architecture
+
+		- Can be run in the `server` mode on a specified port listening for incoming connections:
+		```
+			$ nc -l 2389
+		```
+
+
+		- can be used in `client` mode to connect to an opened port e.g port 2389 above:
+
+		```
+			$ nc localhost 2389
+		```
+
+		- Now this is how this established connection works:
+
+			```
+				#On the client:
+				$ nc localhost 2389
+				Hi, server
+
+				#On the server:
+				$ nc -l 2389
+				Hi, server
+			```
+
+
+
+	- #### 2. Netcat in file transfer:
+
+		- Suppose at the client side there resides a file named 'testfile' containing:
+		```
+			$ cat testfile
+			hello test
+		```
+
+		and at the server side an empty file 'test', now runiing this on the server:
+
+		```
+			$ nc -l 2389 > test
+		```
+
+		and running this on the client:
+		```
+			cat testfile | nc localhost 2389
+		```
+
+		this canges the test file at the server to be 'hello test' same as what was in the client file.
 
 
