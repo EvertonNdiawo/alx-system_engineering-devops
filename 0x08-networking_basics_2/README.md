@@ -91,16 +91,16 @@
 	- #### 1. Netcat in a client-server architecture
 
 		- Can be run in the `server` mode on a specified port listening for incoming connections:
-		```
-			$ nc -l 2389
-		```
+			```
+				$ nc -l 2389
+			```
 
 
 		- can be used in `client` mode to connect to an opened port e.g port 2389 above:
 
-		```
-			$ nc localhost 2389
-		```
+			```
+				$ nc localhost 2389
+			```
 
 		- Now this is how this established connection works:
 
@@ -119,22 +119,127 @@
 	- #### 2. Netcat in file transfer:
 
 		- Suppose at the client side there resides a file named 'testfile' containing:
-		```
-			$ cat testfile
-			hello test
-		```
+			```
+				$ cat testfile
+				hello test
+			```
 
 		and at the server side an empty file 'test', now runiing this on the server:
 
-		```
-			$ nc -l 2389 > test
-		```
+			```
+				$ nc -l 2389 > test
+			```
 
 		and running this on the client:
-		```
-			cat testfile | nc localhost 2389
-		```
+			```
+				cat testfile | nc localhost 2389
+			```
 
 		this canges the test file at the server to be 'hello test' same as what was in the client file.
+
+
+
+	- #### 3. Netcat Supports Timeouts
+
+		- In cases whereby a connection is to be terminated after a specifies amount of time, using netcat with the `-w` switch terminates the connection automatically after the set timeout is reached.
+
+
+			```
+				server:
+				nc -l 2389
+
+				client:
+				nc -w 10 localhost 2389
+
+			```
+
+			The connection established above is trminated after 10 seconds. Just a note, if the -l flag is used in the server side, using -w does not have an effect on this connection and is overriden by the superior -l flag.
+
+
+
+	- #### 4. Netcat and IPv6 connectivity:
+
+
+		- The flag `-4` or `-6` specifies what IP addressing to use.
+
+			```
+				server:
+				nc -4 -l 2389
+
+				client:
+				nc -4 localhost 2389
+
+				Now running netstat to verify:
+				netstat | grep 2398
+
+				tcp	0	0 localhost:2389	localhost:50851 	ESTABLISHED
+				tcp	0	0 localhost:50851	localhost:2389		ESTABLISHED
+
+			```
+
+			In the case of IPv6, the result would show `tcp6`.
+
+
+	- #### 5. Disable reading from STDIN:
+
+		- Using the `-d` flag disables reading from standard input:
+
+			```
+				server:
+				nc -l 2389
+
+				client:
+				nc -d localhost 2389
+				Hi!
+			```
+			The test 'Hi!' will not be sent to the server since reading from stdin is disabled.
+
+
+
+	- #### Forcing a server to stay up
+
+		- Using the `-k` flag at the server side can force the server to stay up even after the client is disconnected:
+
+			```
+				server:
+				nc -k -l 2389
+	
+				client:
+				nc localhost 2389
+				^C                 //Interrupt (Ctr+C)
+
+
+			```
+
+
+	- #### 7. Configure client to stay up after EOF:
+
+		- In normal behaviour, when netcat client receives an EOF character, the connection is immediately terminated, but using the `-q` flag, this can be controlled. The flag also expects a number which depicts the numer of seconds to wait before client terminates after receiving EOF.
+
+
+			```
+				client:
+				nc -q 5 localhost 2389
+			```
+
+			This way, if client receives an EOF  then it waits for 5 seconds before terminating.
+
+
+	- #### 8. Netcat with UDP protocol:
+
+		- By default netcat creates sockets that are TCP protocol but enabling UDP protocol is also a viable option and is done using the `-u` flag.
+
+			```
+				server:
+				nc -4 -u -l 2389
+
+				client:
+				nc -4 -u localhost 2389
+
+				Verification:
+				netstat | grep 2389
+				udp	0	0 localhost:42634	localhost:2389	ESTABLISHED
+
+			```
 
 
