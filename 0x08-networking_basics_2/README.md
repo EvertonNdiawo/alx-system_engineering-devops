@@ -57,3 +57,27 @@
 
 
 
+- ### Modifying the hosts file on Linux
+
+	- A hosts file is a plain text file that all operating systems use to translate hostnames(__URLs__) into IP addresses. e.g when a user types a hostname such as wikipedia.org, the user's system looks into the hosts file to get the IP address needed to connect to the appropriate server.
+
+	- Given that the system first checks the host file before looking up a site on the `DNS` servers defined by a network, it is then possible to use the hosts file to add to what DNS servers cannot provide for, e.g aliases to locations on a local network, overriding IP addresses that a DNS server would normally provide etc etc.
+
+
+	- This file is located in `etc/hosts` and can be accessed and modified with administrative rights.
+
+
+	- Hosts file can also be used to create easy to remember names of machines on a local network. e.g a computer with an IP address `192.168.1.10` that has a server useful to a user could be named as so in the hosts file:
+
+		```
+			192.168.1.10	simpleserver
+		```
+
+		Then, by typing ___http://simpleserver__, the user's computer automatically redirects to 192.168..., the specified IP address for the machine in the hosts file.
+
+
+	- This hosts file could also be used to creat a shortcut to frequented sites by the user. By using a tool such as `nslookup` to find IP addresses for such sites and listing them in the hosts file, with a shortcut name to use when browsing.
+
+
+
+
