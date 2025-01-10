@@ -115,3 +115,114 @@
 			  # ...plus any applicable metaparameters.
 			}
 		```
+
+
+		- #### Description of the file above:
+
+			- The `file` type can manage ___normal files___, ___directories___ and ___symlinks___. The type is specified in the `ensure` attribute. 
+
+			- File contents can be managed directly with the `content` attribute or downloaded from a remote source using the `source` attribute.
+
+			- If using the `source` attribute, it can be used to recursively serve directories when the `recurse` attribute is set to `true` or `local`.
+
+			- If puppet is managing user or group that owns a file, the file resource will autorequire them. For the case of any parent directories of a file, the file resource will also autorequire them.
+
+			- **WARNING:** - Enabling `recurse` on directories with large number of files slows the puppet agent runs. Other methods to manage file attributes for many files include ___chmod_r___, ___chown_r___, ___recursive_file_permissions___ modules from the `Forge`.
+
+
+
+		- #### In-depth discussion of attributes:
+
+			- **path**: The path to the file being managed. Typically a **namevar**, which means it is the unique identifier for this resource. If ommited, the attributes value defaults to the resource's title.
+
+			- **ensure**: Defines whether the file should exist(`present`), or not (`absent`). and of what kind the file should be, (`file`) or (`directory`) or (`link`).
+
+				- __present__ - Accepts any form of file existence, and creates a normal file if the file is missing(Created file has no content unless `content` or `source` attribute used.)
+				- __absent__ - Ensures the file doesn't exist, and deletes it if necessary.
+				- __file__ - Ensures it is a normal file and thereby enables the use of `content` or `source` attribute.
+				- __directory__ - Ensure's its a directory, and enables use of `source`, `recurse`, `recurselimit`, `ignore` and `purge` attributes.
+				- __link__ - Ensures link is a symlink and __requires__ that the `target` attribute is set.
+
+
+			- Puppet ensures that directories are not easily destroyable, not unless the `force` attribute is set to `true`, in which case if a file is a directory, the `ensure` attribute has to be nothing but `directory` or `present`. Otherwise an error or notice is logged.
+
+			- A non-standard value for the `ensure` attribute is specifying another file as the ensure value, which is equivalent to specifying a `link` and the path of the file being the `target`.
+
+		- **backup**: Specifies whether to make a backup of the file before making changes. If set, defines how backups are stored: 
+			
+			- If set to `false`, file content wont be backed up.
+			- if set to a string beginning with `.` such as `.puppet-bak`, puppet uses/copies the file in the same directory with the value as the extension of the backup.
+			- If set to any other string, puppet trys to bak up to a filebucket with that title. This is the preffered method of backup.
+
+
+
+			- default value: `puppet`. Which, backs up to a filebucket with the same name. Puppet automatically creates a local filebucket named puppet if one doesn't already exist.
+
+			- Backing  up to a local filebucket is not very useful and for organized backups, using the `puppet master server`'s filebucket is preferrable. Requires declaring a filebucket resource and a resource default for the backup attribute in the `site.pp`:
+
+				```
+					# /etc/puppetlabs/puppet/manifests/site.pp
+					filebucket { 'main':
+						path => false,                  # Required for remote filebuckets.
+						server => 'puppet.example.com', #Optional, defaults to the configured puppet master
+					}
+
+					File {backup => main,}
+				```
+
+				
+
+		- **checksum**: The type of checksum to use for comparing the file contents. Can be used to ensure the file contents are correct. 
+			- The default type is `md5` but other values include: `md5`, `md5lite`, `sha224`, `sha256`, `sha256lite`, `sha384`, `sha512`, `mtime`, `ctime`, `none`.
+
+
+		- **checkusm_value**: The checksum of the source contents. Used to validate the the file content has not changed unexpectedly.
+			- Only `md5`, `sha256`  `sha224`, `sha384` and `sha512` are supported when this parameter is specified.
+			- Also, if set, `source_permissions` will be assumed to be `false` and `ownership` and `permissions` will not be read from the source.
+
+
+		- **content**: Desired contents of a file as a string. If specified, puppet ensures this content is written to a file.
+			- Newlines and tabs can be specified in double-quoted strings using the standard escape sequences, i.e `\n` for newlines, `\t` for tabs
+
+
+		- **ctime**: A read-only state to check the file ctime(change time) of a file. i.e when the file's metadata was last modified.
+
+
+		- **force**: Force an operation to be executed even if it might overwrite or change things that might not be needed. It performs file operations even if it will destroy a directory or directories. Used in order to:
+
+			- `purge` subdirectories
+			- Replace directories with files or links
+			- Remove directories when `ensure => absent`
+
+			- Allowed values: `true/yes`, `false/no`
+
+
+
+		- **group**: Specifies the group that should own a file, either through group name or ID.
+		
+
+		- **ignore**: A parameter that can omit action on files matching specified patterns.
+
+
+
+		- **links**: Defines how to handle links during file actions. Can control whether symlinks should be followed, created etc. By default set to manage.
+
+			- `follow` - copies the target file instead of the link.
+			- `manage` - copies the link itself. 
+
+
+		- **mode**: The desired permission mode for the file, in symbolic or numeric notation (u+x, 700 kind of stuff). 
+
+			- Must be specified as a string, no use of un-quoted numbers.
+			- if omitted or explicitly set to ___undef___, puppet does not enforce permissions on existing files and new ones are created with permissions of ___0644___
+
+
+		- **mtime**: A read-only state to check the __modification time__ of the file, when the file content was last modified.
+
+
+
+		- ***owner**: The user to whom the file should belong. Could be a user name or ID.
+
+
+
+		- **provider**: 
