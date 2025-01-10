@@ -1,7 +1,7 @@
 ## 0x0A. Configuration management
 
 
-### Introduction
+- ### Introduction
 
 	- Configuration management (CM) is the process of systematically handling changes to a system in such a way that it maintains its integrity over time.
 
@@ -18,7 +18,7 @@
 		3. Chef
 		4. Salt
 
-### Benefits of configuration management for servers
+- ### Benefits of configuration management for servers
 
 	1. __Quick provisioning of new servers:__ - Whenever a new server need to be deployed, the automation tool automates most if not all of the provisioning process, making provisioning much quicker and more efficient.
 
@@ -32,7 +32,7 @@
 
 
 
-### General Overview of Configuration management tools and features
+- ### General Overview of Configuration management tools and features
 
 
 	- Even though unique, most CM tools share many characteristics and have similar concepts.
