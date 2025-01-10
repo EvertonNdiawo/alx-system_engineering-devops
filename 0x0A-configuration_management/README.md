@@ -57,14 +57,13 @@
 
 		- Table below provides a comparison between three of the most popular CM tools available in the market:
 
-		| Feature                                | Ansible                                     | Puppet                                      | Chef                                      |
-|----------------------------------------|---------------------------------------------|---------------------------------------------|-------------------------------------------|
-| **Script Language**                    | YAML                                        | Custom DSL based on Ruby                    | Ruby                                      |
-| **Infrastructure**                     | Controller machine applies configuration on nodes via SSH | Puppet Master synchronizes configuration on Puppet Nodes | Chef Workstations push configuration to Chef Server, from which Chef Nodes will be updated |
-| **Requires Specialized Software for Nodes** | No                                          | Yes (Puppet Agent)                          | Yes (Chef Client)                         |
-| **Provides Centralized Point of Control** | No, any computer can be a controller         | Yes, via Puppet Master                      | Yes, via Chef Server                      |
-| **Script Terminology**                 | Playbooks / Roles                           | Manifests / Modules                         | Recipes / Cookbooks                       |
-| **Task Execution Order**               | Sequential                                  | Non-sequential                              | Sequential                                 |
 
-
+| Feature             | Ansible                    | Puppet                           | Chef                          |
+|---------------------|----------------------------|----------------------------------|-------------------------------|
+| **Script Language** | YAML                       | Custom DSL based on Ruby         | Ruby                          |
+| **Infrastructure**  | Contrl => config  via SSH  | Pp master > config on Pp Nodes   | Chf Wrkstn => Chf Server,Nodes|
+| **Specialized Soft**| No                         | Yes (Puppet Agent)               | Yes (Chef Client)             |
+| **Centralized Ctrl**| No, any can be a controller| Yes, via Puppet Master           | Yes, via Chef Server          |
+| **Scrpt Terminlogy**| Playbooks / Roles          | Manifests / Modules              | Recipes / Cookbooks           |
+| **Task Exectn Order**| Sequential                | Non-sequential                   | Sequential                    |
 
