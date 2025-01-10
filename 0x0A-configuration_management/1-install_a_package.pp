@@ -1,7 +1,4 @@
-# A puppet manifest to install a package.
-# Installs flast
-# Version 2.1.0
-#
+# A puppet manifest to installs the package 'flask -version 2.1.0' from pip3
 
 package { 'flask':
   ensure   => '2.1.0',
