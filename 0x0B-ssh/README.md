@@ -169,6 +169,7 @@
 
 ### Basic connections to the server
 
+
 	- #### Connecting to a remote server
 
 		- Co connect to a remote server and open a shell session there, the `ssh` command comes in handy:
