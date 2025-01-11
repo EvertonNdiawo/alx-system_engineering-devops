@@ -140,6 +140,183 @@
 
 	- #### Copying the public SSH key to a server with ___SSH-COPY-ID___
 
-		
+		- Copying a public key to a server to allow authentication without a password takes this approach:
+
+			```
+				ssh-copy-id [username@remotehost]
+			```
+
+			This prompts for the user account's password on the remote system, after which the contents of `~/.ssh/id_rsa.pub` key is appended to the end of the user account's `~/.ssh/authorized_keys` file.
 
 
+	- ####  Copying a public SSH key to a server without __SSH-Copy-ID__
+
+		- If the `ssh-copy-id`	utility is not available, the contents of the key can be output and piped into the `ssh` command. On the remote side, after ensuring the `~/.ssh` directory exists, appending the contents into the `~/.ssh/authorized_keys` file is then done.
+
+			```
+				cat ~/.ssh/id_rsa.pub | ssh username@remote_host "mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys"
+
+
+
+	- #### Copying a public SSH key to a server manually
+
+		- On the local machine, find contents of the public key file
+
+		- Copy the value and manually paste it into the appropriate location on the remote server, authorized_keys file in the .ssh directory that is.
+
+
+
+
+### Basic connections to the server
+
+	- #### Connecting to a remote server
+
+		- Co connect to a remote server and open a shell session there, the `ssh` command comes in handy:
+			```
+				ssh remote_host
+
+
+				ssh username@remote_host
+			```
+
+
+	- #### Running a single command on the server
+
+		- To run a single command on the remote server without spawning a shell session, add the command after the connection information:
+
+			```
+				ssh username@remote_host [COMMAND TO RUN]
+			```
+
+	- #### Logging into the server with a different port
+
+		- By default the SSH daemon on a server runs on port `22`. Any ssh client would assume that this is the case when trying to connect. If the ssh server is listening on a non-standard port, specifying the new port number when connecting with the client becomes imperative. The port number is specified using the `-p` option:
+
+			```
+				ssh -p [PORT NUMBER] username@remote_host
+			```
+
+			- To automate this and avoid having to specify the port number everytime for a server whose SSH port is configured into a different port from the default one, creating or editing a configuration file in the `~/.ssh` directory within the home directory of the client and setting host-specific configuration options would make things so easy:
+
+			```
+				#cat ~/.ssh/config
+
+				Host [remote_alias]
+			             Hostname [REMOTE_HOST]
+				     Port [PORT NUMBER]
+			```
+
+
+	- #### Adding SSH keys to an SSH agent to avoid typing the passphrase
+
+		- If an SSH private key has a passphrase, the remote host prompts to enter the passphrase every time the private key is used. To avoid repeatedly doing this, an ssh agent comes through. It is a small utility and it stores the private key after entering the passphrase for the first time. The key is available for the duration of the terminal session, allowing to connect in the future without re-entering the passphrase.
+
+		- To start the SSH agent:
+
+			```
+				eval $(ssh-agent)
+
+				output:
+				Agent pid 10891
+			```
+
+			This starts the agent program and places it into the background. Next is adding the private key to the agent, so that it manages the key:
+
+			```
+				ssh-add
+			```
+
+
+	- #### Forwarding SSH credentials to use on a server
+
+		- If a client wishes to connect without a password to one server from within another server, forwarding ssh key information solves this. It allows authenticating to another server through the server the client is conected to, using the credentials on the client.
+
+		- First the ssh agent must be started and the ssh key added to the agent, after which connecting to the first server using the `-A` option is done. This forwards the credentials to the server for this session.
+
+			```
+				ssh -A username@remote_host
+			```
+
+			From here, one can SSH in to any other host that their SSH key is authorized to access. It connects as if the client's private SSH key is located on this server.
+
+
+
+
+### Server-side configuration options
+
+- These are some configuration options that can shape the way the server responds and what types of connections allowed.
+
+
+	- #### Disabling the password Authentication
+
+		- If SSH keys are configured, tested and working properly, it is probably a good idea to disable password authentication. This prevents any user from signing in with SSH using a password.
+
+		- To do this, connect to the remote server and open the `/etc/ssh/sshd_config` file with root priviledges: - Inside the file, search for the `passwordAuthentication` directive, if commented out, uncomment it, set it to `no` to disable password logins:
+
+			```
+				/etc/ssh/sshd_config
+
+				PasswordAuthentication no
+
+			```
+
+			After this operation, restart the SSH service.
+
+			```
+				sudo service ssh restart
+			```
+
+
+	- #### Changing the port that the SSH Daemon runs on
+
+		- This is typically done to limit the number of authentication attempts the server is subjected to from automated robots.
+
+		- To change the port that the SSH daemon listens on, log in to the remote server, open the `sshd_config` file on the remote system with root priviledges, then changing the port that SSH runs on by finding the entry for `Port 22` and modifying it to reflect the port one wishes to use.For instance to change the port to `4444`:
+
+			```
+				# Port 22
+				Port 4444
+			```
+
+			To apply changes, save and restart the SSH daemon.
+
+
+	- #### Limiting the Users who can connect through SSH
+
+		- Takes different approaches, all of which rely on editing the ssh daemon config file:
+
+		1. The first method of specifying the accounts that are allowed to login is using the `AllowUsers` directive. Search for this entry, if it doesn't exist, create it anywhere. Then list the user accounts that should be allowed to login through SSH:
+
+			```
+				AllowUsers [user1] [user2]
+
+			```
+
+		2. Using group management - through the `AllowGroups` directive. This adds a group that should be allowed SSH access.
+
+			```
+				AllowGroups [sshmembers]
+			```
+
+			Also, if the group does not exist it can be created through:
+
+			```
+				sudo groupadd -r sshmembers
+			```
+			Next is adding whatever user accounts needed in this group:
+
+			```
+				sudo usermod -a -G [sshmembers] [user1]
+				sudo usermod -a -G [sshmembers] [user2]
+
+
+	- #### Disabling Root login
+
+		- It always advisable to completely disable root login through SSH after having set up an SSH user account that has `sudo` priviledges. To do this, open SSH daemon config file with the root priviledges on the remote server. Inside, find the `PermitRootLogin` and set the value to `no`:
+
+			```
+				PermitRootLogin no
+			```
+
+
+	- Allowing Root access for Specific commands:
