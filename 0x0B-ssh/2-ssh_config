@@ -1,5 +1,4 @@
-Host ubuntu_ssh
+Host ubuntu@54.196.46.79
    HostName 54.196.46.79
-   User ubuntu
    IdentityFile ~/.ssh/school
    PasswordAuthentication no
