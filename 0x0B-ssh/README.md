@@ -165,9 +165,8 @@
 		- Copy the value and manually paste it into the appropriate location on the remote server, authorized_keys file in the .ssh directory that is.
 
 
-
 ### Basic connections to the server
-
+-
 	- #### Connecting to a remote server
 
 		- Co connect to a remote server and open a shell session there, the `ssh` command comes in handy:
