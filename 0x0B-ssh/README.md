@@ -15,4 +15,4 @@
 
 		| Server type 		| Purpose 			| clients 		|
 		|-----------------------|-------------------------------|-----------------------|
-		| Application server | Host's application `back ends` that user clients (__front ends__, __web apps__, or __locally installed applications__) in the network connect to and use. | Clients with a browser or a local front end, or a web server. |
+		| Application server | - Host's application `back ends` that user clients (__front ends__, __web apps__, or __locally installed applications__) in the network connect to and use. \n- Not necessarily connected to the internet, even a local network can do | Clients with a browser or a local front end, or a web server. |
