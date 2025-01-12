@@ -1,4 +1,6 @@
-Host ubuntu@54.196.46.79
-   HostName 54.196.46.79
-   IdentityFile ~/.ssh/school
-   PasswordAuthentication no
+#!/usr/bin/env bash
+# ssh configuration
+
+Host 54.196.46.79
+IdentityFile ~/.ssh/school
+PasswordAuthentication no
