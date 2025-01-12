@@ -1,10 +1,15 @@
-# Ensures the SSH client configuration file exists and is configured properly
+# Sets up a client SSH configuration file
+# Client can connect to a server without using a password
 
-file { '/home/ubuntu/.ssh/config':
-  ensure  => 'file',
-  content => '
-Host *
-  IdentityFile ~/.ssh/school
-  PasswordAuthentication no
-',
+
+$file_content = file('/etc/ssh/ssh_config')
+$config = "${file_content}\
+    IdentityFile ~/.ssh/school
+    PasswordAuthentication no
+"
+
+file { 'school':
+  ensure  => 'present',
+  path    => '/etc/ssh/ssh_config',
+  content => $config
 }
