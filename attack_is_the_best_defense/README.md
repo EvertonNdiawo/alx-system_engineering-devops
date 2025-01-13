@@ -45,4 +45,32 @@
 
 		10. __NetworkMiner__
 
-		11. __IP Tools__
+		11. __IP Tools_
+
+
+
+### ARP Spoofing
+
+- A type of cyberattack whereby the attacker sends fake, falsified ARP (Address Resolution Protocol) messages on a local network. 
+
+- If successful, the attackers MAC address is linked to an authentic IP address of a device within the system and the attacker receives the data that is intended for that particular IP address.
+
+- ARP spoofing can be used to facilitate the following other attacks:
+
+		- ___Denial-of-Service attacks___: Often achieved by linking multiple IP addresses with a single target's MAC address, thereby the traffic that is intended for all these many IP addresses is redirected to a target's MAC address, overloading the target with traffic. The attacker may also stop traffic by not forwarding packets after intercepting them.
+
+
+		- ___Session hijacking___: Whereby ARP spoofing is used to steal __session IDs__, thereby granting attackers access to private systems and data.
+
+		- ___Man-in-the-middle attacks___: Using ARP to intercept and modify traffic between victims.
+
+
+
+
+	- #### How ARP spoofing works
+
+		- Attacker sends malicious ARP replies to the victim or the router, pretending to be the another device.e.g the attacker claims, "I am the router and my MAC is XX:XX:XX:XX:XX."
+
+		- The victim and/or router updates its ARP table with the attacker's MAC address, associating it with the IP address of the target device.
+
+		- Traffic intended for the legitimate device is now sent to the attacker since theirMAC address is associated with the legitimate device's IP address.
