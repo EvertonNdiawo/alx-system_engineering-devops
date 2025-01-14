@@ -163,3 +163,22 @@
 		- ##### Step 6: Testing the results
 
 			- This can be done by visiting the domain names in a web browser. e.g `http://example.com`
+
+
+#### Domains and subdomains
+
+- Internet domain is the identity or representation (in form of letters) of an IP address. Domains come in handy simply because it is easier to remember names than the IP address digits.
+
+- A Domain Name System (DNS) translates this identity in the form of letters into an IP address that can be accessed by a web browser etc.
+
+- Example of internet domain name: `https://www.landingi.com/call-to-action/`
+
+- A subdomain belongs to the root domain. Typically, a domain is bought once and then as many subdomains as are allowed by the domain name provider can be created through the domain name registra's account. An example is a root domain such as `tafariclarinets.com`, from this a subdomain such as `bookings.tafariclarinets.com` can be registered to handle the concert bookings etc.
+
+- Subdomains are usually redirected using the `A records` from the domain name registra/ provider.
+
+
+
+### HTTP requests
+
+- 
