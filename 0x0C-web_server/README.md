@@ -65,7 +65,7 @@
 			- After this, the two sites should be able to display the content in the index.html pages as a webpage.
 
 
-		- ##### Set 3: Creating server block configuration files for Each Domain
+		- ##### Step 3: Creating server block configuration files for Each Domain
 
 
 			- As discussed above, nginx contains one server block called `default` which can be used as a template for configurations. Each domain name however needs their own server block, which tells nginx how to serve its contents.
@@ -75,3 +75,91 @@
 
 				- In nginx, main configuration file, that controls global settings is found at `/etc/nginx/nginx.conf`
 				- Site-specific configuration files are found at `/etc/nginx/sites-available/[site config file]`:
+
+
+					```
+						/etc/nginx/sites_available/example.com
+
+						server {
+						   listen 80 default_server;
+						   server_name [example.com www.example.com;
+
+						   root /var/www/example.com/html;
+						   index index.html;
+
+
+						   location / {
+							try_files $uri $uri/ =404;
+						   }
+						}
+					```
+
+					- To note is that only one server block on the server can havethe `default_server` option enabled. And it specifies which block should server a request if the `server_name` requested does not match any of the available server blocks. Without this directive, the default server block serves the contents of /var/www/html directory if the requested host cannot be found.
+
+					- The `root` directive adjusts the document root, pointing it to the site's document root that was earlier on created.
+
+					- The server name directive sets aliases to match requests for a domain.
+
+					- Depending on the number of sites hosted on the server, any of the server blocks gets a configuration file that specifies how its content is served.
+
+
+		- ##### Step 4: Enabling server blocks and restarting nginx
+
+			- This is done by creating symbolic links from the server block files to the `sites_enabled` directory, which nginx reads from during startup.
+
+
+				```
+					sudo ln -s /etc/nginx/sites-available/[example.com] /etc/nginx/sites-enabled/
+					sudo ln -s /etc/nginx/sites-available/[test.com] /etc/nginx/sites-enabled/
+
+				```
+
+					- The sites are now linked into the enabled directory, with three server blocks enabled, which are configured to respond based on their `listen` directive and the `server_name`:
+
+						- `example.com`: responds to requests for `example.com` and `www.examples.com`
+						- `test.com`: responds to requests for `test.com` and `www.test.com`
+						- `default`: Responds to any requests on port 80 that do not match the other two blocks.
+
+
+			- Next is to test and make sure there are no syntax errors in any of the nginx files:
+				```
+					$ sudo nginx -t
+				```
+
+			- If no problems are found, restart nginx to enable the changes:
+
+				```
+					$ sudo systemctl restart nginx
+				```
+
+
+		- ##### Step 5: (Optional) Configuring DNS
+
+			- If a website is to be accessible via a domain name, the domain name needs to be pointed to the server:
+
+				1. Go to the domain name provider
+				2. Add an A Record pointing the domain to server's public IP address
+				3. Allow time for DNS propagation ( could take up to 24hours)
+
+
+			- An alternative exists for testing purposes, whereby a local computer is used as the domain name provider, for testing purposes. In linux, this is done by editing the `/etc/hosts` directory and specifying the loopback ip address to intercept requests that would usually go to the DNS to resolve domain names. The desired IP addresses the local computer goes to when the requested domain names are encountered is specified:
+
+
+				```
+					/etc/hosts
+
+					127.0.0.1	localhost
+					...
+
+					203.0.113.5	example.com www.example.com
+					203.0.113.5	test.com www.test.com
+
+				```
+
+				This intercepts any requests for example.com and test.com and sends them to the server, if the domain names are not yet owned etc.
+
+
+
+		- ##### Step 6: Testing the results
+
+			- This can be done by visiting the domain names in a web browser. e.g `http://example.com`
