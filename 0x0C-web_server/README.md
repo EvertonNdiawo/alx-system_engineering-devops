@@ -188,13 +188,13 @@
 		- The method names are case sensitive and must be used in UPPERCASE.
 
 
-			| Method	 | Description 							|
-			|----------------|--------------------------------------------------------------|
-			| **GET**	 | Retrieves information from the given server using a given **URI**. Only retrieves data and has no other effect on the data |
-			| **HEAD**	 | Same as GET, but transfers the status line and header section only. |
-			| **POST**	 | Used to send data to the server, e.g customer information, file upload etc using HTML forms. |
-			| **PUT**	 | Replaces all current representation of a target resource with the uploaded content. |
-			| **DELETE** 	 | Removes current representations of the target resource given by a URI. |
-			| **CONNECT** 	 | Establishes a tunnel to the server identified by a given URI. |
-			| **OPTIONS**	 | Describes the communication options for the target resource. |
-			| **TRACE** 	 | Performs a message loop-back test along the path to the target resource. |
+			| Method | Description |
+			|--------|-------------|
+			| **GET** | Retrieves information from the given server using a given **URI**. Only retrieves data and has no other effect on the data |
+			| **HEAD** | Same as GET, but transfers the status line and header section only. |
+			| **POST** | Used to send data to the server, e.g customer information, file upload etc using HTML forms. |
+			| **PUT** | Replaces all current representation of a target resource with the uploaded content. |
+			| **DELETE** | Removes current representations of the target resource given by a URI. |
+			| **CONNECT** | Establishes a tunnel to the server identified by a given URI. |
+			| **OPTIONS** | Describes the communication options for the target resource. |
+			| **TRACE** | Performs a message loop-back test along the path to the target resource. |
