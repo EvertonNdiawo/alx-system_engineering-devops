@@ -179,9 +179,10 @@
 
 
 
-## HTTP requests
+### HTTP requests
 
 	- ### HTTP Methods
+
 
 		- HTTP request methods specify the action to be performed on resources. The set of common methods for HTTP/1.1 are defined below: 
 
