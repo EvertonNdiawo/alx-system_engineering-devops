@@ -255,13 +255,13 @@
 	- Common options for the scp command include:
 
 			
-			| Option | Description |
-			|--------|-------------|
-			| **-r** | Recursively copy directories and their contents |
-			| **-p** | Specify an SSH port |
-			| **-q** | Suppress progress meter and non-error messages. |
-			| **-c** | Enable compression for faster transfers |
-			| **-i** | Specify an identity file(private key) for SSH |
+		| Option | Description 					   |
+		|--------|-------------------------------------------------|
+		| **-r** | Recursively copy directories and their contents |
+		| **-p** | Specify an SSH port                             |
+		| **-q** | Suppress progress meter and non-error messages. |
+		| **-c** | Enable compression for faster transfers         |
+		| **-i** | Specify an identity file(private key) for SSH   |
 
 
 ### curl
