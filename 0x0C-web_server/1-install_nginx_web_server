@@ -7,18 +7,18 @@
 
 
 #Update package list
-apt-get update
+apt-get -y update
 
 #install nginx
-apt-get install -y nginx
+apt-get -y install nginx
 
 
 #Ensure nginx is listening on port 80
-ufw allow 'Nginx HTTP'
+sudo ufw allow 'Nginx HTTP'
 
 #Create HTML file to display string in the root directory
 echo "<html><body><h1>Hello World!</h1></body></html>" > /var/www/html/index.html
 
 
 #Reload nginx without using systemctl
-nginx -s reload
+sudo service nginx restart
