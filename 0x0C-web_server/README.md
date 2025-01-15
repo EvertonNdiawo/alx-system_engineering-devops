@@ -301,3 +301,22 @@
 		| `-k`       | Allows insecure SSL connections (use cautiously).         |
 		| `--limit-rate` | Limits the transfer rate (useful for testing bandwidth constraints). |
 		| `--max-time`   | Specifies the maximum time (in seconds) for the request to complete. |
+
+
+
+### DNS RECORD TYPES
+
+| **Type** | **Purpose** | **Example Use-Case** |
+|----------|-------------|----------------------|
+| A | Maps a domain to an IPv4 address. | `example.com`-> `192.169.0.3` |
+| CNAME | Points a domain to another domain, alias | `www.example.com` -> `example.com` |
+| TXT | Stores arbitrary text information for verification or metadata | Email SPF record: `v=spf1include:_spf...` |
+| MX | Specifies mail servers for handling email delivery | Mail server for `example.com`: `mail.example.com` |
+
+
+##-------------------------------------- END OF CONTENT----------------------------------------
+
+
+## SPECIFIC TASKS IN THE PROJECT
+
+- TBE
