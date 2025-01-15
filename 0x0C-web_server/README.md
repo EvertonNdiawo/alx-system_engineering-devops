@@ -198,3 +198,106 @@
 	| **CONNECT** | Establishes a tunnel to the server identified by a given URI. |
 	| **OPTIONS** | Describes the communication options for the target resource. |
 	| **TRACE** | Performs a message loop-back test along the path to the target resource. |
+
+
+### HTTP REDIRECTION
+
+- TBE
+
+
+
+### Error 404
+
+- TBE
+
+
+### scp
+
+- `Secure Copy Protocol` : Command line utility used to securely transfer files and directories betwween two computers over a network. Leverages on SSH to provide encrypted file transfers.
+
+- The general syntax takes the form of: 
+	```
+		scp [options] source destination
+	```
+
+		Where source is the path to the file or directory to copy and destination is the path where the file or directory is to be copied. Example scenarios:
+
+			```
+
+				#1Copy a file, file.txt from local machine to remote server
+				scp [file.txt] [user@remote_host:/remote/directory]
+
+				#where user=username for the remote machine, remote_host=IP address or hostname of the remote machine and /remote/directory=destinatin directory of the remote machine.
+
+
+
+
+				#2Copy a file from a remote server to local machine
+				scp [user@remote_host:/remote/directory/file.txt /local/directory
+
+
+				#3Copy an entire directory, using the -r option for recursive copying
+				scp -r /local/directory user@remote_host:/remote/directory
+
+
+				#4Specify a custom ssh port using the -p option
+				scp -p 2222 file.txt user@remote_host:/remote/directory
+
+
+
+
+				#5Copy between two remote servers
+				scp user1@remote_host1:/path/to/file user2@remote_host2:/path/to/destination
+
+			```
+
+
+	- Common options for the scp command include:
+
+			
+			| Option | Description |
+			|--------|-------------|
+			| **-r** | Recursively copy directories and their contents |
+			| **-p** | Specify an SSH port |
+			| **-q** | Suppress progress meter and non-error messages. |
+			| **-c** | Enable compression for faster transfers |
+			| **-i** | Specify an identity file(private key) for SSH |
+
+
+### curl
+
+- `Clint URL`: command line tool used to interact with web servers and perform data transfers. Supports multiple protocols such as HTTP, HTTPS, FTP, SFTP and others.
+
+- Common use cases may includea:
+
+	1. Fetching a web page - `curl https://example.com`
+	2. Downloading a file - `curl -o https://example.com/file.txt`, saves the file to the local system. -o saves it with its original name.
+	3. Custom output file names - `curl -o myfile.txt https://example.com/file.txt`, here -o specifies the output file name.
+	4. Sending HTTP GET Requests - `curl https://api.example.com/data`, does this by default.
+	5. Sending HTTP POST requests - `curl -X POST -d "param1=value1&param2=value2" https://api.example.com/submit`. -X POST specifies the request method, -d sends data in the body of the request.
+	6. Adding custom headers in a requests, using the `-H` option.
+	7. Downloading multiple files, by specifying the path to files with spaces in between.
+	8. Handling redirects using the `-L` option.
+	9. Uploading a file - `curl -X POST -F "file=@path/to/file.txt" https://api.example.com/upload`. Where -F specifies form data with file uploads.
+	10. Basic authentication. `curl -u username:password https://api.example.com/secure` where `-u` specifies the username and password.
+
+
+
+	- Here's the table of the common options:
+
+		| **Option** | **Description** |
+		|------------|-----------------|
+		| `-X`       | Specifies the HTTP method (e.g., GET, POST, PUT, DELETE). |
+		| `-d`       | Sends data in the body of the request (for POST or PUT).  |
+		| `-H`       | Adds custom headers to the request.                       |
+		| `-o`       | Saves the output to a specified file.                     |
+		| `-O`       | Saves the output with the file's original name.           |
+		| `-L`       | Follows redirects.                                        |
+		| `-u`       | Provides username and password for basic authentication.  |
+		| `-F`       | Sends form data, including file uploads.                  |
+		| `-I`       | Fetches only the headers of the response.                 |
+		| `-v`       | Provides verbose output (useful for debugging).           |
+		| `--compressed` | Requests compressed content (e.g., gzip).             |
+		| `-k`       | Allows insecure SSL connections (use cautiously).         |
+		| `--limit-rate` | Limits the transfer rate (useful for testing bandwidth constraints). |
+		| `--max-time`   | Specifies the maximum time (in seconds) for the request to complete. |
