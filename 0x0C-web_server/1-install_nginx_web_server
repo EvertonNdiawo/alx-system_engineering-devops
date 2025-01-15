@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+# Installs nginx on the server
+# Nginx set to listen on port 80
+# Nginx to return a page that contains the string "Hello World!"
+#  when queried at its root / with a GET request using curl.
+# "systemctl" not allowed for restarting of nginx.
+
+
+#Update package list
+apt-get update
+
+#install nginx
+apt-get install -y nginx
+
+
+#Edit configuration file to ensure nginx listens on port 80
+echo "
+server {
+	listen 80 default_server;
+	listen [::]:80 default_server;
+	root /var/www/html;
+	index index.html index.htm index.nginx-debian.html;
+
+
+	server_name _;
+
+
+	location / {
+	    try_files \$uri \$uri/ =404;
+	}
+}
+" > /etc/nginx/sites-available/default
+
+
+#Create HTML file to display string in the root directory
+echo "Hello World!" > /var/www/html/index.html
+
+
+#Reload nginx without using systemctl
+nginx -s reload
