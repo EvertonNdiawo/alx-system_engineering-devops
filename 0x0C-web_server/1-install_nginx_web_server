@@ -33,7 +33,7 @@ server {
 
 
 #Create HTML file to display string in the root directory
-echo "Hello World!" > /var/www/html/index.html
+echo "<html><body><h1>Hello World!</h1></body></html>" > /var/www/html/index.html
 
 
 #Reload nginx without using systemctl
