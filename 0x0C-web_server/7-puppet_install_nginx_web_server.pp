@@ -33,26 +33,12 @@ package { 'nginx':
 }
 
 
-ufw::rule { 'allow_http':
-  port   => '80',
-  action => 'allow',
-}
-
-
 file { 'index.html':
   ensure  => 'present',
   path    => '/var/www/html/index.html',
   content => '<html><body><h1>Hello World!</h1></body></html>',
   mode    => '0644',
 }
-
-
-file { 'custom_404.html':
-  ensure  => 'present',
-  path    => '/var/www/html/custom_404.html',
-  content => "<html><body><p>Ceci n'est une page</p></body></html>",
-}
-
 
 file {'default':
   ensure  => 'present',
