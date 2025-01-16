@@ -1,5 +1,5 @@
 package { 'nginx':
-     ensure => installed,
+  ensure => installed,
 }
 
 
@@ -11,7 +11,7 @@ ufw::rule { 'allow_http':
 
 file { '/var/www/html/index.html':
   ensure  => file,
-  content => "<html><body><h1>Hello World!</h1></body></html>",
+  content => '<html><body><h1>Hello World!</h1></body></html>',
 }
 
 
