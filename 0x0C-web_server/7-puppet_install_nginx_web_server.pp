@@ -47,5 +47,5 @@ file {'default':
 }
 
 exec { 'service nginx restart':
-  path => '/etc/nginx/sites-available/default',
+  path => ['/usr/sbin', '/usr/bin']
 }
