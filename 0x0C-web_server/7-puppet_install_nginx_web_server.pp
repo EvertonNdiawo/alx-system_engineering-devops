@@ -46,13 +46,20 @@ server {
 		return 301 https://www.youtube.com;
 	}
 
-	location /error {
-		return 404 /custom_404.html;
+	error_page 404 /custom_404.html;
+	location = /custom_404.html {
 		internal;
 	}
 
 	location / {
-		try_files \$uri \$uri/ =404;
+		try_files $uri $uri/ =404;
 	}
 }",
+}
+
+
+service { 'nginx';
+  ensure  => running,
+  enable  => true,
+  require => File['/etc/nginx/sites-available/default'],
 }
