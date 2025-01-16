@@ -15,20 +15,24 @@ ufw::rule { 'allow_http':
 }
 
 
-file { '/var/www/html/index.html':
-  ensure  => file,
+file { 'index.html':
+  ensure  => 'present',
+  path    => '/var/www/html/index.html',
   content => '<html><body><h1>Hello World!</h1></body></html>',
+  mode    => '0644',
 }
 
 
-file { '/var/www/html/custom_404.html':
-  ensure  => file,
+file { 'custom_404.html':
+  ensure  => 'present',
+  path    => '/var/www/html/custom_404.html',
   content => "<html><body><p>Ceci n'est une page</p></body></html>",
 }
 
 
-file {'/etc/nginx/sites-available/default':
-  ensure  => file,
+file {'default':
+  ensure  => 'present',
+  path    => '/etc/nginx/sites-available/default',
   content => "
 server {
 	listen 80 default_server;
@@ -58,8 +62,6 @@ server {
 }
 
 
-service { 'nginx';
-  ensure  => running,
-  enable  => true,
-  require => File['/etc/nginx/sites-available/default'],
+exec { 'service nginx restart':
+  path => '/etc/nginx/sites-available/default',
 }
