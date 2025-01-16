@@ -4,8 +4,32 @@
 #  returns a page containing the string Hello World!
 # A 301 redirection is defined
 
+
+$config = "server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
+
+
+        root /var/www/html;
+        index index.html;
+
+        location /redirect_me {
+                return 301 https://www.youtube.com;
+        }
+
+        error_page 404 /custom_404.html;
+        location = /custom_404.html {
+                internal;
+        }
+
+        location / {
+                try_files \$uri \$uri/ =404;
+        }
+}"
+
+
 package { 'nginx':
-  ensure => installed,
+  ensure => 'installed',
 }
 
 
@@ -33,34 +57,8 @@ file { 'custom_404.html':
 file {'default':
   ensure  => 'present',
   path    => '/etc/nginx/sites-available/default',
-  content => "
-server {
-	listen 80 default_server;
-	listen [::]:80 default_server;
-
-
-	root /var/www/html;
-	index index.html index.htm index.nginx-debian.html;
-
-
-	server_name _;
-
-
-	location /redirect_me {
-		return 301 https://www.youtube.com;
-	}
-
-	error_page 404 /custom_404.html;
-	location = /custom_404.html {
-		internal;
-	}
-
-	location / {
-		try_files \$uri \$uri/ =404;
-	}
-}",
+  content => $config,
 }
-
 
 exec { 'service nginx restart':
   path => '/etc/nginx/sites-available/default',
