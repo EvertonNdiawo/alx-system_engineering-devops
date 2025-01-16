@@ -3,10 +3,10 @@
 # The redirection is a 301 Moved permanently.
 
 #Update package list
-apt-get -y update
+sudo apt-get -y update
 
 #install nginx
-apt-get -y install nginx
+sudo apt-get -y install nginx
 
 #Ensure nginx is listening on port 80
 sudo ufw allow 'Nginx HTTP'
