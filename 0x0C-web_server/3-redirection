@@ -1,0 +1,32 @@
+#!/urs/bin/env bash
+# Configures an nginx server so that /redirect-me is redirecting to another page.
+# The redirection is a 301 Moved permanently.
+
+#Update package list
+apt-get -y update
+
+#install nginx
+apt-get -y install nginx
+
+#Ensure nginx is listening on port 80
+sudo ufw allow 'Nginx HTTP'
+
+#Create HTML file to display string in the root directory
+echo "<html><body><h1>Hello World!</h1></body></html>" > /var/www/html/index.html
+
+echo "server {
+	listen 80 default_server;
+	listen [::]:80 default_server;
+
+	root/var/www/html;
+	index index.html;
+
+	location /redirect-me {
+		return 301 https://www.youtube.com/watch?v=QH2-TGU1wu4;
+	}
+}"> default
+
+sudo mv -f default /etc/nginx/sites-available/default
+
+#Reload nginx without using systemctl
+sudo service nginx restart
