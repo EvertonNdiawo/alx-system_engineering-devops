@@ -1,3 +1,9 @@
+# Manifest to configure a web server.
+# Nginx should be listening on port 80
+# when querying at the root / with Get request using curl,
+#  returns a page containing the string Hello World!
+# A 301 redirection is defined
+
 package { 'nginx':
   ensure => installed,
 }
