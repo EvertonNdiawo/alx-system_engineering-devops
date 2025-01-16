@@ -1,4 +1,4 @@
-#!/urs/bin/env bash
+#!/usr/bin/env bash
 # Configures an nginx server so that /redirect-me is redirecting to another page.
 # The redirection is a 301 Moved permanently.
 
